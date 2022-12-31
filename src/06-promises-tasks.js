@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-await-in-loop */
 /* ************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -56,8 +58,8 @@ function willYouMarryMe(isPositiveAnswer) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
+function processAllPromises(array) {
+  return Promise.all(array);
 }
 
 /**
@@ -79,8 +81,8 @@ function processAllPromises(/* array */) {
  *    })
  *
  */
-function getFastestPromise(/* array */) {
-  throw new Error('Not implemented');
+function getFastestPromise(array) {
+  return Promise.race(array);
 }
 
 /**
@@ -100,8 +102,15 @@ function getFastestPromise(/* array */) {
  *    });
  *
  */
-function chainPromises(/* array, action */) {
-  throw new Error('Not implemented');
+async function chainPromises(array, action) {
+  const arr = [];
+  for (let i = 0; i < array.length; i += 1) {
+    try {
+      arr.push(await array[i]);
+    // eslint-disable-next-line no-continue
+    } catch (e) { continue; }
+  }
+  return arr.reduce((a, b) => action(a, b));
 }
 
 module.exports = {
