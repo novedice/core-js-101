@@ -122,6 +122,8 @@ describe('09-functions-n-closures-tasks', () => {
         'testLogger(["expected","test",1],0) starts\n',
         'logger function shoud log the start of specified function before calling',
       );
+      console.log('param', param);
+      console.log('index', index);
       isCalling = true;
       return param[index];
     };
@@ -135,7 +137,8 @@ describe('09-functions-n-closures-tasks', () => {
     const actual = logger(['expected', 'test', 1], 0);
 
     assert.equal(isCalling, true, 'logger function should call the specified function');
-    assert.equal(actual, 'expected', 'logger function should return the original result from specified function');
+    assert.equal(actual, 'expected', '1logger function should return the original result from specified function');
+    console.log('act;', actual);
     assert.equal(
       log,
       'testLogger(["expected","test",1],0) starts\n'
